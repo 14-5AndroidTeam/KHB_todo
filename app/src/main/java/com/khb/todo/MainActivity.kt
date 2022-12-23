@@ -2,15 +2,18 @@ package com.khb.todo
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.edit
 import androidx.core.text.trimmedLength
 
 class MainActivity : AppCompatActivity() {
@@ -30,8 +33,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var register_option:LinearLayout
     private lateinit var btns:LinearLayout
+    private lateinit var save_account:CheckBox
 
     private var status = true
+    private lateinit var pref:SharedPreferences
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +58,15 @@ class MainActivity : AppCompatActivity() {
 
         register_option = findViewById(R.id.register_option)
         btns = findViewById(R.id.btns)
+        save_account = findViewById(R.id.save_account)
+
+        pref = getSharedPreferences("save", MODE_PRIVATE)
+        save_account.isChecked = pref.getBoolean("save", false)
+
+        if(save_account.isChecked) {
+            edit_email.setText(pref.getString("email", ""))
+            edit_password.setText(pref.getString("password", ""))
+        }
 
         btn1.setOnClickListener {
             val valueAnimator: ValueAnimator = ValueAnimator.ofFloat(1F, 0F, 1F)
@@ -77,13 +91,59 @@ class MainActivity : AppCompatActivity() {
                     btn1_txt.text = "회원가입"
                     btn2_txt.text = "로그인"
                 }
-            }, 75)
+            }, valueAnimator.duration / 2)
         }
 
         btn2.setOnClickListener {
             if(edit_email.text?.trimmedLength() == 0) {
                 edit_email.error = "이메일을 입력해주세요"
+                edit_email.requestFocus()
+                return@setOnClickListener
             }
+            if(edit_password.text?.trimmedLength() == 0) {
+                edit_password.error = "비밀번호를 입력해주세요"
+                edit_password.requestFocus()
+                return@setOnClickListener
+            }
+            if(!status && edit_password.text?.trimmedLength()!! < 6) {
+                edit_password.error = "비밀번호를 6자 이상 입력해주세요"
+                edit_password.requestFocus()
+                return@setOnClickListener
+            }
+            if(!status && edit_name.text?.trimmedLength() == 0) {
+                edit_name.error = "이름을 입력해주세요"
+                edit_name.requestFocus()
+                return@setOnClickListener
+            }
+            if(!status && edit_age.text?.trimmedLength() == 0) {
+                edit_age.error = "나이를 입력해주세요"
+                edit_age.requestFocus()
+                return@setOnClickListener
+            }
+            if(edit_email.text?.trim()?.matches(Regex("[^@]+@[^@]+\\.[^@]+")) == false) {
+                edit_email.error = "이메일을 입력해주세요"
+                edit_email.requestFocus()
+                return@setOnClickListener
+            }
+
+            if(status) {
+                //로그인 api 요청
+            } else {
+                //회원가입 api 요청
+            }
+
+            if(save_account.isChecked)
+                pref.edit {
+                    putBoolean("save", true)
+                    putString("email", edit_email.text.toString())
+                    putString("password", edit_password.text.toString())
+                }
+            else
+                pref.edit {
+                    putBoolean("save", false)
+                    putString("email", "")
+                    putString("password", "")
+                }
         }
     }
 }
