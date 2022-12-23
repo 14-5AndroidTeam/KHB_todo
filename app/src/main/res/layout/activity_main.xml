@@ -178,7 +178,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorControlNormal"
         android:text="이메일과 비밀번호를 저장"
-        android:id="@+id/save"/>
+        android:id="@+id/save_account"/>
 
     <ScrollView
         android:layout_width="match_parent"
