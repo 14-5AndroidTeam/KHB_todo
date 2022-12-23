@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccent"
+    android:background="#FFFFFF"
     android:gravity="center"
     tools:context=".MainActivity">
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="24dp">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
-                android:textColor="#FFFFFF"/>
+                android:id="@+id/edit_email"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:singleLine="true"
                 android:inputType="textPassword"
-                android:textColor="#FFFFFF"/>
+                android:id="@+id/edit_password"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -71,8 +71,8 @@
             android:layout_marginEnd="80dp"
             android:layout_marginBottom="8dp"
             android:visibility="invisible"
-            android:baselineAligned="false">
-
+            android:baselineAligned="false"
+            android:id="@+id/register_option">
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:textColor="#FFFFFF"/>
+                    android:id="@+id/edit_name"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -104,7 +104,7 @@
                     android:layout_height="match_parent"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#FFFFFF"/>
+                    android:id="@+id/edit_age"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -118,7 +118,8 @@
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:layout_marginTop="8dp"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:id="@+id/btns">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -128,40 +129,46 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:gravity="center"
-            android:background="@drawable/button_back">
+            android:background="@drawable/button_back"
+            android:id="@+id/btn1">
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/icon_signup"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:id="@+id/btn1_img"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
-                android:text="회원가입"/>
+                android:text="회원가입"
+                android:id="@+id/btn1_txt"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:gravity="center"
-            android:background="@drawable/button_back">
+            android:background="@drawable/button_back"
+            android:id="@+id/btn2">
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/icon_signin"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:id="@+id/btn2_img"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
-                android:text="로그인"/>
+                android:text="로그인"
+                android:id="@+id/btn2_txt"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -170,7 +177,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorControlNormal"
-        android:text="이메일과 비밀번호를 저장"/>
+        android:text="이메일과 비밀번호를 저장"
+        android:id="@+id/save"/>
 
     <ScrollView
         android:layout_width="match_parent"

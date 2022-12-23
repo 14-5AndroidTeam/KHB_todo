@@ -10,7 +10,16 @@
         <item name="colorSecondaryVariant">@color/colorPrimary</item>
         <item name="colorOnSecondary">@color/colorControlNormal</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.ToDo.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ToDo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ToDo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
