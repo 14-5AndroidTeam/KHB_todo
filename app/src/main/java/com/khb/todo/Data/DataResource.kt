@@ -3,7 +3,6 @@ package com.khb.todo.Data
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.Provider
 
 object DataResource {
     val baseUrl = "https://jw-todo.inuappcenter.kr"
@@ -13,5 +12,5 @@ object DataResource {
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
-    val service = retrofit.create(Provider.Service::class.java)
+    val service = retrofit.create(RetrofitService::class.java)
 }
